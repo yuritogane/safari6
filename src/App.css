@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Nunito:wght@700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #b8e6ff;
+  color: #4c321d;
+  font-family: 'Nunito', 'Mochiy Pop One', sans-serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+}
+
+.game-shell {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(#72c9f8 0%, #c7ecff 44%, #f8e7a6 45%, #f6d982 100%);
+  padding: 14px 18px 20px;
+  max-width: 1100px;
+  margin: auto;
+  border: 5px solid #fff6d9;
+  border-radius: 28px;
+}
+
+.sun {
+  position: absolute;
+  right: 8%;
+  top: 60px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffde66;
+  box-shadow: 0 0 0 16px #ffde6640;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  color: #fff;
+  font-size: 100px;
+  opacity: 0.75;
+  top: 5px;
+}
+
+.cloud-one { left: 10%; }
+.cloud-two { right: 35%; top: 50px; }
+
+.game-header, .savanna, .keyboard-area, footer {
+  position: relative;
+  z-index: 1;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand > span {
+  font-size: 44px;
+}
+
+.brand small {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #94652e;
+}
+
+.brand h1 {
+  margin: 2px 0;
+  font-size: clamp(20px, 3vw, 28px);
+  color: #8c4b20;
+  text-shadow: 1px 2px #fff;
+}
+
+.stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: #fff7dc;
+  border: 3px solid #d89d45;
+  border-radius: 15px;
+  padding: 6px 10px;
+  min-width: 82px;
+  text-align: center;
+  box-shadow: 0 4px #bc7e2c;
+}
+
+.stat small {
+  display: block;
+  font-size: 11px;
+}
+
+.stat strong {
+  font-size: 20px;
+  color: #8d501e;
+}
+
+.stat strong small {
+  display: inline;
+  font-size: 11px;
+}
+
+.savanna {
+  position: relative;
+  height: 390px;
+  border: 5px solid #fff1c9;
+  border-radius: 25px;
+  overflow: hidden;
+  background: linear-gradient(#71c9ff 0%, #bde9ff 53%, #d9e998 54%, #b4cc62 100%);
+  box-shadow: 0 6px 0 #d5a451;
+}
+
+.mountains {
+  position: absolute;
+  bottom: 110px;
+  left: 0;
+  width: 100%;
+  height: 130px;
+  background: linear-gradient(140deg, transparent 20%, #b3bb83 20% 37%, transparent 37%),
+              linear-gradient(35deg, transparent 25%, #d1c68a 25% 50%, transparent 50%);
+  opacity: 0.5;
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(#a8c75e, #e2bd64);
+  border-top: 6px solid #9fb64c;
+  z-index: 1;
+}
+
+.tree {
+  position: absolute;
+  bottom: 60px;
+  font-size: 85px;
+  filter: drop-shadow(3px 5px #8e773e55);
+  z-index: 3;
+}
+.tree-left { left: 1.5%; }
+.tree-right { right: 1.5%; }
+
+.question-card {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, 86%);
+  background: #fff4d7;
+  border: 4px solid #d8a34e;
+  border-radius: 24px;
+  padding: 10px 14px 12px;
+  text-align: center;
+  box-shadow: 0 6px #bc7e2c;
+  z-index: 4;
+}
+
+.question-title {
+  font-size: clamp(17px, 3vw, 23px);
+  font-weight: 900;
+  color: #7d4a22;
+}
+
+.animal-big {
+  font-size: 72px;
+  line-height: 1.1;
+  animation: bob 1.4s ease-in-out infinite;
+  filter: drop-shadow(2px 6px 3px rgba(80, 50, 20, 0.25));
+}
+
+.answer-slots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+}
+
+.answer-slots span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 40px;
+  background: #fff;
+  border: 2px solid #e2b46c;
+  border-radius: 9px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.answer-slots .filled {
+  background: #d9f5b5;
+  color: #426d2a;
+}
+
+.answer-slots .filled.reveal {
+  background: #ffe999;
+  border-color: #e09b2d;
+  color: #7d3e10;
+}
+
+.hint {
+  font-size: 13px;
+  background: #fff8e6;
+  border-radius: 12px;
+  padding: 4px 8px;
+  margin-top: 5px;
+}
+
+.message {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff9e6;
+  border: 2px solid #d4a24e;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-weight: 900;
+  font-size: 13px;
+  white-space: nowrap;
+  max-width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 10;
+}
+
+/* ① 重ならない独立レーン＆足を動かして歩くアニメーション */
+.animal-runners {
+  position: absolute;
+  bottom: 34px;
+  width: 100%;
+  height: 76px;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.runner-lane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: walk-right-to-left 35s linear infinite;
+  will-change: transform;
+}
+
+/* 5匹を7秒間隔で完全ずらして配置（35s / 5 = 7sごとの等間隔で重ならない） */
+.runner-lane-0 { animation-delay: 0s; }
+.runner-lane-1 { animation-delay: -7s; }
+.runner-lane-2 { animation-delay: -14s; }
+.runner-lane-3 { animation-delay: -21s; }
+.runner-lane-4 { animation-delay: -28s; }
+
+.runner {
+  position: absolute;
+  font-size: 44px;
+  filter: drop-shadow(2px 6px 3px rgba(60, 40, 10, 0.35));
+  /* 足を交互に踏み出すような歩幅・上下・前傾リズム */
+  animation: leg-stride 0.55s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+.runner-0 { bottom: 6px; }
+.runner-1 { bottom: 22px; animation-delay: -0.15s; }
+.runner-2 { bottom: 2px; animation-delay: -0.3s; }
+.runner-3 { bottom: 18px; animation-delay: -0.1s; }
+.runner-4 { bottom: 10px; animation-delay: -0.25s; }
+
+/* 右から左へ前進（translateX でスムーズに横切る） */
+@keyframes walk-right-to-left {
+  0% {
+    transform: translateX(105vw);
+  }
+  100% {
+    transform: translateX(-20vw);
+  }
+}
+
+/* 足を動かしているように見える歩幅の傾き＋着地ステップ */
+@keyframes leg-stride {
+  0% {
+    transform: translateY(0px) rotate(-5deg) skewX(-6deg) scaleX(1.03) scaleY(0.97);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg) skewX(0deg) scaleX(0.98) scaleY(1.03);
+  }
+  100% {
+    transform: translateY(-1px) rotate(5deg) skewX(6deg) scaleX(1.03) scaleY(0.97);
+  }
+}
+
+.keyboard-area {
+  margin-top: 14px;
+  background: #fff3d4;
+  border: 4px solid #e1b15d;
+  border-radius: 22px;
+  padding: 12px;
+  box-shadow: 0 5px #bf8a40;
+}
+
+/* ② 「1文字けす」や「小 ゛ ゜」が縦表示にならないよう横並び・折り返し防止 */
+.keyboard-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.keyboard-label {
+  white-space: nowrap;
+}
+
+.keyboard-tools {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
+.tool-btn {
+  background: #f5c86f;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #75461c;
+  font-weight: 900;
+  font-size: 13px;
+  box-shadow: 0 2px #c99b4d;
+  white-space: nowrap;
+  flex-shrink: 0;
+  writing-mode: horizontal-tb;
+}
+
+.tool-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.tool-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.kana-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.kana-key {
+  background: #fff;
+  border: 2px solid #dfb15d;
+  border-radius: 12px;
+  min-width: 0;
+  min-height: 48px;
+  font-size: 21px;
+  color: #77461e;
+  font-weight: 900;
+  box-shadow: 0 3px #c99b4d;
+  touch-action: none;
+  user-select: none;
+  overflow: hidden;
+}
+
+.kana-key small {
+  display: block;
+  font-size: 7px;
+  color: #b78b4e;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+
+.kana-key:active {
+  transform: translateY(2px);
+  box-shadow: none;
+  background: #fff0bc;
+}
+
+.bottom-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.start-button {
+  background: linear-gradient(#ffcb4e, #f39d32);
+  color: #633b18;
+  border: 3px solid #fff0b4;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: 0 5px #bf7d27;
+  min-width: 220px;
+}
+
+.start-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px #bf7d27;
+}
+
+.giveup-button {
+  background: #d9b5a1;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #633b18;
+  font-weight: 900;
+}
+
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  background: #3a542caa;
+  display: grid;
+  place-items: center;
+  z-index: 20;
+  padding: 15px;
+}
+
+.result-card {
+  background: #fff4d6;
+  border: 6px solid #ffcc52;
+  border-radius: 30px;
+  padding: 25px;
+  text-align: center;
+  width: min(460px, 95%);
+  box-shadow: 0 10px #9b692c;
+  animation: pop 0.4s ease;
+}
+
+.result-card h2 {
+  font-size: 40px;
+  color: #e76e30;
+  margin: 6px;
+}
+
+.result-card h3 {
+  font-size: 28px;
+  color: #4f9b43;
+  margin: 0;
+}
+
+.result-card p {
+  font-size: 18px;
+}
+
+.confetti { font-size: 35px; }
+.kusudama { font-size: 55px; animation: shake 0.5s infinite; }
+
+.final-score {
+  font-size: 30px;
+  font-weight: 900;
+  color: #8c571e;
+  background: #ffe6a1;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px;
+}
+
+.final-score span {
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+footer {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 12px;
+  color: #7e6537;
+}
+
+@keyframes bob { 50% { transform: translateY(-8px); } }
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes shake { 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
+
+@media(max-width: 650px) {
+  .game-shell { padding: 9px; border-radius: 18px; border-width: 3px; }
+  .game-header { justify-content: center; }
+  .brand { justify-content: center; margin-bottom: 4px; }
+  .brand > span { font-size: 34px; }
+  .stats { justify-content: center; gap: 4px; }
+  .stat { min-width: 68px; flex: 1; padding: 5px 4px; }
+  .stat strong { font-size: 17px; }
+  .savanna { height: 340px; }
+  .question-card { top: 8px; padding: 6px 10px; width: 88%; }
+  .animal-big { font-size: 52px; }
+  .answer-slots span { min-width: 27px; height: 35px; font-size: 18px; }
+  .hint { font-size: 11px; }
+  .tree { font-size: 60px; bottom: 50px; }
+  .tree-left { left: 0.5%; }
+  .tree-right { right: 0.5%; }
+  .message { font-size: 11px; bottom: 8px; padding: 5px 10px; }
+  .runner { font-size: 36px; }
+  .keyboard-area { padding: 8px; }
+  .keyboard-heading { gap: 6px; }
+  .keyboard-label { font-size: 13px; }
+  .tool-btn { padding: 6px 10px; font-size: 12px; }
+  .kana-grid { gap: 4px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .kana-key { min-height: 42px; font-size: 16px; border-radius: 8px; padding: 2px 0; }
+  .kana-key small { font-size: 5.5px; letter-spacing: -0.35px; }
+  .start-button { font-size: 18px; padding: 10px 20px; }
+  .question-title { font-size: 16px; }
+}
+
+@media(max-width: 380px) {
+  .stats { gap: 3px; }
+  .stat small { font-size: 10px; }
+  .stat strong { font-size: 15px; }
+  .savanna { height: 310px; }
+  .kana-key { min-height: 40px; }
+  .brand h1 { font-size: 20px; }
+  .tool-btn { padding: 6px 8px; font-size: 11px; }
+}
